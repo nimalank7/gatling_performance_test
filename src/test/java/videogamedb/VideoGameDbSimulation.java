@@ -27,7 +27,7 @@ public class VideoGameDbSimulation extends Simulation {
     private static final int RAMP_DURATION = Integer.parseInt(System.getProperty("RAMP_DURATION", "10"));
 
     // Feeder for test data using the random strategy
-    private static FeederBuilder.FileBased<Object> jsonFeeder = jsonFile("data/gameJsonFile.json").random();
+    private static FeederBuilder.FileBased<Object> jsonFeeder = jsonFile("data/gameJsonFileFeeder.json").random();
 
     // Before block allows us to see what the env variables are set to
     @Override
@@ -105,7 +105,10 @@ public class VideoGameDbSimulation extends Simulation {
                     .exec(getLastPostedGame)
                     .pause(2)
                     .exec(deleteLastPostedGame);
-    // Load Simulation
+    /*
+    USER_COUNT and RAMP_DURATION are provided by passing parameters into maven
+    Default values specified in the field
+     */
     {
         setUp(
                 scn.injectOpen(
